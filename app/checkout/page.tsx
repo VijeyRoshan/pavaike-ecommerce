@@ -58,7 +58,9 @@ export default function CheckoutPage() {
       })
 
       if (!checkoutResponse.ok) {
-        throw new Error("Checkout failed")
+        const errorData = await checkoutResponse.json().catch(() => ({}))
+        console.error("Checkout API error:", errorData)
+        throw new Error(errorData.error || "Checkout failed")
       }
 
       const { sessionId } = await checkoutResponse.json()
@@ -77,7 +79,8 @@ export default function CheckoutPage() {
       clearCart()
     } catch (error) {
       console.error("Error creating order:", error)
-      alert("Error creating order. Please try again.")
+      const errorMessage = error instanceof Error ? error.message : "Unknown error occurred"
+      alert(`Error creating order: ${errorMessage}\n\nPlease check:\n- Your internet connection\n- All form fields are filled\n- Try again in a moment`)
     } finally {
       setIsLoading(false)
     }
