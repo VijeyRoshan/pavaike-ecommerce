@@ -41,8 +41,8 @@ export default function CheckoutPage() {
 
     try {
       // Call checkout API to create Stripe session
-      const apiUrl = process.env.NEXT_PUBLIC_BACKEND_URL || '/api'
-      const checkoutResponse = await fetch(`${apiUrl}/checkout`, {
+      const apiUrl = process.env.NEXT_PUBLIC_BACKEND_URL || 'https://your-render-backend.onrender.com'
+      const checkoutResponse = await fetch(`${apiUrl}/api/checkout`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

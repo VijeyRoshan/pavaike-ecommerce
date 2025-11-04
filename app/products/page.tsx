@@ -21,8 +21,8 @@ export default function ProductsPage() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const apiUrl = process.env.NEXT_PUBLIC_BACKEND_URL || '/api'
-        const response = await fetch(`${apiUrl}/products`)
+        const apiUrl = process.env.NEXT_PUBLIC_BACKEND_URL || 'https://your-render-backend.onrender.com'
+        const response = await fetch(`${apiUrl}/api/products`)
         if (!response.ok) {
           throw new Error("Failed to fetch products")
         }

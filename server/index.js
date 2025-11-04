@@ -12,8 +12,13 @@ const PORT = process.env.PORT || 3001;
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 // Middleware
+// Update CORS configuration in server/index.js
 app.use(cors({
-  origin: process.env.FRONTEND_URL || '*',
+  origin: [
+    'https://pavaike-ecommerce.vercel.app',  // Your main Vercel URL
+    /https:\/\/pavaike-ecommerce-.*-vijeyroshanm2023aiml-1713s-projects\.vercel\.app/,
+    'https://pavaike-ecommerce.onrender.com'  // Your Render URL
+  ],
   credentials: true
 }));
 app.use(express.json());
