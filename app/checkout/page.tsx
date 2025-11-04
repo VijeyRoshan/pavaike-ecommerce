@@ -41,7 +41,8 @@ export default function CheckoutPage() {
 
     try {
       // Call checkout API to create Stripe session
-      const checkoutResponse = await fetch("/api/checkout", {
+      const apiUrl = process.env.NEXT_PUBLIC_BACKEND_URL || '/api'
+      const checkoutResponse = await fetch(`${apiUrl}/checkout`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
